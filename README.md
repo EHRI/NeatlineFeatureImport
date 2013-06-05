@@ -1,3 +1,3 @@
 # Neatline CSV Import 
-Import CSV file into Neatline
+Import CSV files into Neatline.
 
