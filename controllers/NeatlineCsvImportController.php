@@ -9,11 +9,12 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-if (!defined('NL_CSV_DIR')) {
-	define('NL_CSV_DIR', dirname(__FILE__));
+class NeatlineCsvImport_IndexController extends Omeka_Controller_AbstractActionController
+{
+
+	public function indexAction ()
+	{
+		echo "csv";
+		exit;
+	}
 }
-
-require_once NL_CSV_DIR . '/NeatlineCsvImportPlugin.php';
-
-$csvimport = new NeatlineCsvImportPlugin();
-$csvimport->setUp();
