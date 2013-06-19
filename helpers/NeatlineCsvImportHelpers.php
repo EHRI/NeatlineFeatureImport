@@ -9,12 +9,12 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-class NeatlineCsvImport_IndexController extends Omeka_Controller_AbstractActionController
+function nlcsv_getExhibitsForSelect()
 {
-
-	public function indexAction ()
-	{
-		echo "csv";
-		exit;
-	}
+   	$exhibits = get_db()->getTable("NeatlineExhibit")->findAll();
+    $options = array();
+    foreach($exhibits as $exhibit){
+    	$options[$exhibit->id]=$exhibit->title;
+    }
+    return $options;
 }

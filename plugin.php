@@ -13,7 +13,15 @@ if (!defined('NL_CSV_DIR')) {
 	define('NL_CSV_DIR', dirname(__FILE__));
 }
 
+// Plugin
 require_once NL_CSV_DIR . '/NeatlineCsvImportPlugin.php';
+
+// Forms	
+require_once NL_CSV_DIR.'/forms/NeatlineCsvImport_Form_Import.php';
+
+// Helpers
+require_once NL_CSV_DIR.'/helpers/NeatlineCsvImportHelpers.php';
+
 
 $csvimport = new NeatlineCsvImportPlugin();
 $csvimport->setUp();
