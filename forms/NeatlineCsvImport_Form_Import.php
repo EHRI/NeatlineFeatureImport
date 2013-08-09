@@ -22,16 +22,16 @@ class NeatlineCsvImport_Form_Import extends Omeka_Form
         $this->addElement('select', 'exhibit', array(
             'label' => __('Exhibit'),
             'description' => __('Select the exhibit that you want to import records into.'),
-            'multiOptions' => nlcsv_getExhibitsForSelect()
-            // More attributes here, see:
-            // https://github.com/scholarslab/Neatline/blob/develop/forms/Neatline_Form_Exhibit.php#L129
+            'multiOptions' => nlcsv_getExhibitsForSelect(),
         ));
         
         // The file upload form:
         
         $this->addElement('file', 'csv', array(
             'label' => __('CSV File'),
-            'description' => __('Select the CSV file.')
+            'description' => __('Select the CSV file.'),
+            'required' => true
+
         ));
         
         // The submit button:
