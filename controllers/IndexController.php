@@ -31,8 +31,18 @@ class NeatlineCsvImport_IndexController extends Omeka_Controller_AbstractActionC
 
         $keys = array_shift($rows);
 
+        // Get exhibit id.
+        $exhibitsTable = $this->_helper->db->getTable('NeatlineExhibit');
+        $exhibit = $exhibitsTable->find($form->getValue('exhibit'));
+
         foreach ($rows as $i => $row) {
+
           $rows[$i] = array_combine($keys, $row);
+
+          $record = new NeatlineRecord($exhibit);
+          $record->setArray($values);
+          $record->save();
+
         }
 
         print_r($rows);
