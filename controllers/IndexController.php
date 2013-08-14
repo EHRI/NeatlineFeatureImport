@@ -12,14 +12,14 @@
 class NeatlineCsvImport_IndexController extends Omeka_Controller_AbstractActionController
 {
 
-	public function indexAction ()
-	{
+  public function indexAction ()
+  {
 
-		$form = new NeatlineCsvImport_Form_Import;
+    $form = new NeatlineCsvImport_Form_Import;
 
-		if ($this->_request->isPost()){
-			if ($form->isValid($this->_request->getPost())){
-				$form->csv->receive();
+    if ($this->_request->isPost()){
+      if ($form->isValid($this->_request->getPost())){
+        $form->csv->receive();
 
         $path = $form->csv->getFilename();
         $file = fopen($path, 'r');
@@ -37,22 +37,19 @@ class NeatlineCsvImport_IndexController extends Omeka_Controller_AbstractActionC
 
         foreach ($rows as $i => $row) {
 
-          $rows[$i] = array_combine($keys, $row);
+          $row = array_combine($keys, $row);
 
           $record = new NeatlineRecord($exhibit);
-          $record->setArray($values);
+          $record->setArray($row);
           $record->save();
 
         }
 
-        print_r($rows);
+      }
+    }
 
-				exit;
-			}
-		}
+    $this->view->form = $form;
 
-		$this->view->form = $form;
-
-	}
+  }
 
 }

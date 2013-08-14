@@ -24,7 +24,6 @@ class NeatlineCsvImportPlugin extends Omeka_Plugin_AbstractPlugin
 
     protected $_filters = array(
         'admin_navigation_main'
-       
     );
 
     /**
@@ -46,7 +45,7 @@ class NeatlineCsvImportPlugin extends Omeka_Plugin_AbstractPlugin
     public function filterAdminNavigationMain($tabs)
     {
         $tabs[] = array('label' => 'Neatline CSV', 'uri' => url('neatline-csv'));
-        return $tabs;        
+        return $tabs;
     }
 
 
