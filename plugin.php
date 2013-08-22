@@ -21,6 +21,8 @@ require_once NL_CSV_DIR.'/forms/NeatlineCsvImport_Form_Import.php';
 
 // Helpers
 require_once NL_CSV_DIR.'/helpers/NeatlineCsvImportHelpers.php';
+require_once NL_CSV_DIR.'/jobs/NeatlineCsvImport_Job_ImportItems.php';
+
 
 $csvimport = new NeatlineCsvImportPlugin();
 $csvimport->setUp();

@@ -22,34 +22,35 @@ class NeatlineCsvImport_IndexController extends Omeka_Controller_AbstractActionC
         $form->csv->receive();
 
         $path = $form->csv->getFilename();
-        $file = fopen($path, 'r');
 
-        $rows = array();
-        while (($row = fgetcsv($file, 4096)) !== false) {
-          $rows[] = $row;
-        }
+       // Import items.
+            Zend_Registry::get('job_dispatcher')->sendLongRunning(
+                'NeatlineCsvImport_Job_ImportItems', array(
+                    'exhibit_id'    => $form->getValue('exhibit'),
+                    'filename'         => $path
+                )
+            );
 
-        $keys = array_shift($rows);
+         // Flash success.
+          $this->_helper->flashMessenger(
+            $this->_getImportStartedMessage(), 'success'
+          );
 
-        // Get exhibit id.
-        $exhibitsTable = $this->_helper->db->getTable('NeatlineExhibit');
-        $exhibit = $exhibitsTable->find($form->getValue('exhibit'));
-
-        foreach ($rows as $i => $row) {
-
-          $row = array_combine($keys, $row);
-
-          $record = new NeatlineRecord($exhibit);
-          $record->setArray($row);
-          $record->save();
-
-        }
-
+           // Redirect to browse.
+            $this->_redirect('/neatline/browse');
       }
     }
 
     $this->view->form = $form;
 
   }
+
+     /**
+     * Set the import started message.
+     */
+    protected function _getImportStartedMessage()
+    {
+        return __('The item import was successfully started!');
+    }
 
 }
