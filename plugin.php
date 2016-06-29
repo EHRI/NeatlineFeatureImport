@@ -1,28 +1,21 @@
 <?php
 
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 cc=76; */
-
 /**
  * @package     omeka
- * @subpackage  neatline-CsvImport
+ * @subpackage  neatline-FeaturesImport
  * @copyright   2012 Rector and Board of Visitors, University of Virginia
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-if (!defined('NL_CSV_DIR')) {
-	define('NL_CSV_DIR', dirname(__FILE__));
+if (!defined('NL_FEAT_DIR')) {
+    define('NL_FEAT_DIR', dirname(__FILE__));
 }
 
 // Plugin
-require_once NL_CSV_DIR . '/NeatlineCsvImportPlugin.php';
+require_once NL_FEAT_DIR . '/NeatlineFeaturesImportPlugin.php';
 
-// Forms	
-require_once NL_CSV_DIR.'/forms/NeatlineCsvImport_Form_Import.php';
+// Forms
+require_once NL_FEAT_DIR . '/forms/NeatlineFeaturesImport_Form_Import.php';
 
-// Helpers
-require_once NL_CSV_DIR.'/helpers/NeatlineCsvImportHelpers.php';
-require_once NL_CSV_DIR.'/jobs/NeatlineCsvImport_Job_ImportItems.php';
-
-
-$csvimport = new NeatlineCsvImportPlugin();
-$csvimport->setUp();
+$nfimport = new NeatlineFeaturesImportPlugin();
+$nfimport->setUp();
